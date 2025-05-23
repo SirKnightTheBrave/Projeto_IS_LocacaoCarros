@@ -61,44 +61,32 @@
         </nav>
     @endif
 </header>
-                <main class="flex flex-col items-center justify-center gap-8 py-16 text-center">
+                <main class="flex flex-col items-center justify-center gap-8 py-16 text-left">
                     <h1 class="text-5xl font-bold text-black dark:text-black">
                         The Knight's Carriage
                     </h1>
-                    <p class="text-lg text-black dark:text-black">
-                        Need a car to save the princess? We got you covered!<br>
-                        We provide the best cars in the land.
+                    <p class="text-lg text-black dark:text-black bg-white dark:bg-white">
+                        <span class="text-[#FF2D20]">F.A.Q.</span> <br>
+                        <b>Q: </b> What is this website? <br>
+                        <b>A: </b> This is a car rental website. <br>
+                        <b>Q: </b> How do I rent a car? <br>
+                        <b>A: </b> You need to register first. <br>
+                        <b>Q: </b> How do I rent a car? <br>
+                        <b>A: </b> After you log in, you can rent a car. <br>
+                        <b>Q: </b> How do I pay? <br>
+                        <b>A: </b> You can pay with a credit card or cash. <br>
+                        <b>Q: </b> How do I cancel my reservation? <br>
+                        <b>A: </b> You can cancel your reservation by logging in and going to your reservations. <br>
+                        <b>Q: </b> How do I contact you? <br>
+                        <b>A: </b> You can contact us by email or phone. <br>
                         <br>
-                        <span class="text-[#FF2D20]">Rent your car now!</span>
+
                     </p>
+                    <span class="text-[#FF2D20]">Rent your car now!</span>
                     <a href="{{ route('register') }}"
                         class="rounded-md bg-[#FF2D20] px-4 py-2 text-white transition hover:bg-[#FF2D20]/80 focus:outline-hidden focus-visible:ring-[#FF2D20] focus-visible:ring-offset-2 dark:bg-[#FF2D20] dark:hover:bg-[#FF2D20]/80 dark:focus-visible:ring-white">
                         Register Now
                     </a>
-                    <div x-data="{
-                        active: 0,
-                        images: [
-                            'https://media.staticmf.com/media/201489/1281/72278524/image/spyne-91922/87e1948976d22b9093133e374e215714/7212e673-7cfb-4752-9cd7-d4bc2b26b68a_1.png',
-                            'https://images.finder.porsche.com/75477dfa-b718-4452-b58e-4ba0e3a798c3/1920.webp',
-                            'https://live.staticflickr.com/8226/8418404115_6c09e47e35_b.jpg'
-                        ]
-                    }"
-                        class="w-full max-w-7xl mx-auto relative overflow-hidden rounded-lg shadow-lg">
-                        <div class="relative h-[900px] md:h-[600px]">
-                            <template x-for="(img, index) in images" :key="index">
-                                <div x-show="active === index"
-                                    class="absolute inset-0 transition-opacity duration-500 ease-in-out">
-                                    <img :src="img" class="w-full h-full object-cover" />
-                                </div>
-                            </template>
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-4">
-                            <button @click="active = active === 0 ? images.length - 1 : active - 1"
-                                class="text-white text-3xl bg-black/50 rounded-full p-3">&#8592;</button>
-                            <button @click="active = active === images.length - 1 ? 0 : active + 1"
-                                class="text-white text-3xl bg-black/50 rounded-full p-3">&#8594;</button>
-                        </div>
-                    </div>
 
                     <footer>
                         <div class="flex items-center justify-center gap-2 py-4">

@@ -66,8 +66,11 @@
                         The Knight's Carriage
                     </h1>
                     <p class="text-lg text-black dark:text-black">
-                        Need a car to save the princess? We got you covered!<br>
-                        We provide the best cars in the land.
+                        Who are we? <br>
+                                We are a car rental company that offers a wide range of vehicles to suit your needs.<br>
+                                Our mission is to provide our customers with the best possible experience when renting a car.<br>
+                                We pride ourselves on our excellent customer service and competitive prices.<br>
+                                Whether you need a car for a day, a week, or longer, we have the perfect vehicle for you.<br>
                         <br>
                         <span class="text-[#FF2D20]">Rent your car now!</span>
                     </p>

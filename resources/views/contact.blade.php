@@ -66,8 +66,11 @@
                         The Knight's Carriage
                     </h1>
                     <p class="text-lg text-black dark:text-black">
-                        Need a car to save the princess? We got you covered!<br>
-                        We provide the best cars in the land.
+                        Contacts: <br>
+                        <span class="text-[#FF2D20]">+351 912 345 678</span> <br>
+                        <span class="text-[#FF2D20]">knightscarriagerentals@fakemail.com</span><br>
+                        <span class="text-[#FF2D20]">Rua da Avenida, 123</span><br>
+                        <span class="text-[#FF2D20]">Algures, Portugal</span><br>
                         <br>
                         <span class="text-[#FF2D20]">Rent your car now!</span>
                     </p>

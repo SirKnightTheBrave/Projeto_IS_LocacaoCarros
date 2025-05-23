@@ -66,8 +66,12 @@
                         The Knight's Carriage
                     </h1>
                     <p class="text-lg text-black dark:text-black">
-                        Need a car to save the princess? We got you covered!<br>
-                        We provide the best cars in the land.
+                        Privacy Policy <br>
+                        This privacy policy describes how The Knight's Carriage collects, uses, and protects your
+                        personal information when you use our car rental services. We are committed to ensuring that your
+                        privacy is protected. We may change this policy from time to time by updating this page. You
+                        should check this page occasionally to ensure that you are happy with any changes. This policy is
+                        effective from 2025-01-01.
                         <br>
                         <span class="text-[#FF2D20]">Rent your car now!</span>
                     </p>
