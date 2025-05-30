@@ -25,7 +25,7 @@
 
 <body class="font-sans antialiased dark:bg-black dark:text-blue">
     <div class="text-blue dark:bg-black dark:text-blue">
-        <img id="background" class="absolute -left-20 top-0 max-w-[1990px]"
+        <img id="background" class="absolute min-h-screen bg-cover bg-center"
             src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FyJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww"
             alt="Alpha" />
         <div
