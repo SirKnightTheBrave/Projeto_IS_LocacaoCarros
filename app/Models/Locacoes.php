@@ -20,7 +20,6 @@ class Locacoes extends Model
     protected $casts = [
         'data_inicio' => 'date',
         'data_fim' => 'date',
-        'preco_total' => 'decimal:2',
     ];
 
     public function usuario()
@@ -51,7 +50,7 @@ class Locacoes extends Model
         return $this->status === 'reservado' && $this->data_fim->isFuture();
     }
 
-      /**
+    /**
      * Verifica se um Bem está disponível para reserva em um intervalo de datas.
      *
      * @param int $bem_locavel_id ID do bem a ser verificado.

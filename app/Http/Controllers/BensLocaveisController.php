@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BensLocaveis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class BensLocaveisController extends Controller
 {
@@ -14,12 +16,11 @@ class BensLocaveisController extends Controller
         // Se não houver filtros de data ou número de hóspedes, retorna todos os imóveis
         if (!$dataInicio || !$dataFim) {
             $disponiveis = DB::table('bens_locaveis')->get();
-
         } else {
 
-        // Inicia uma consulta na tabela
+            // Inicia uma consulta na tabela
             $disponiveis = DB::table('bens_locaveis')
-            // Filtro de imóveis com número de hóspedes suficiente: Verifica se o imóvel pode acomodar o número de hóspedes
+                // Filtro de imóveis com número de hóspedes suficiente: Verifica se o imóvel pode acomodar o número de hóspedes
                 // Adiciona uma subquery com whereNotExists para garantir que o imóvel não esteja reservado no período desejado.
                 // verifica se existe uma reserva no intervalo de datas – se existir, o imóvel será excluído do resultado.
                 ->whereNotExists(function ($query) use ($dataInicio, $dataFim) {
@@ -34,11 +35,34 @@ class BensLocaveisController extends Controller
                         ->where(function ($q) use ($dataInicio, $dataFim) {
                             // Verifica a sobreposição das datas
                             $q->where('data_inicio', '<=', $dataFim)
-                              ->where('data_fim', '>=', $dataInicio);
+                                ->where('data_fim', '>=', $dataInicio);
                         });
                 })
                 ->get();
         }
         return (view('locacoes.index', compact('disponiveis')));
     }
+
+
+    public function show(Request $request)
+
+    {
+
+        $veiculo = BensLocaveis::findOrFail($request->id);
+        // Busca o nome da marca diretamente
+        $marcaNome = DB::table('marca')->where('id', $veiculo->marca_id)->value('nome');
+
+        // Busca as características do veículo
+        $caracteristicasNomes = DB::table('bem_caracteristicas')
+            ->join('caracteristicas', 'bem_caracteristicas.caracteristica_id', '=', 'caracteristicas.id')
+            ->where('bem_caracteristicas.bem_locavel_id', $veiculo->id)
+            ->pluck('caracteristicas.nome'); // pega só a coluna 'nome' como coleção simples
+
+
+        // Passa para a view o veículo e o nome da marca e características
+        return view('locacoes.reserva', compact('veiculo', 'marcaNome', 'caracteristicasNomes'));
+    }
+
+
+
 }

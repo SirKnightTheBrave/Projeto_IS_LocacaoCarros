@@ -1,9 +1,10 @@
 <?php
+
 use App\Http\Controllers\RentalConfirmMailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BensLocaveisController;
+use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\LimitDateMiddleware;
 
 
 Route::get('/', function () {
@@ -34,12 +35,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
-    Route::post('/enviar-email', [RentalConfirmMailController::class, 'sendReservationEmail'])
+Route::post('/enviar-email', [RentalConfirmMailController::class, 'sendReservationEmail'])
     ->middleware('auth')
     ->name('send.email');
 
 Route::get('/disponiveis', [BensLocaveisController::class, 'all_avalible'])->name('disponiveis');
+Route::get('/veiculo/{id}', [BensLocaveisController::class, 'show'])->name('veiculo.show');
+Route::get('/locacao', [ReservaController::class, 'create'])->name('locacao.create');
+Route::post('/locacao/store', [ReservaController::class, 'store'])->name('locacao.store');
+Route::get('/locacao/{id}', [ReservaController::class, 'show'])->name('locacao.show');
+Route::get('/locacoes/print/{id}', [ReservaController::class, 'downloadArquivo'])->name('locacoes.print');
+Route::get('/minhas-reservas', [ReservaController::class, 'minhasReservas'])->name('reservas.minhas');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

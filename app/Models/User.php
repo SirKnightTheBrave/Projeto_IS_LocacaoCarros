@@ -21,7 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'nif'
+        'nif',
+        'telefone', // Uncomment if you want to include telefone
+        'morada', // Uncomment if you want to include morada
+        'data_nascimento', // Uncomment if you want to include data_nascimento
     ];
 
     /**

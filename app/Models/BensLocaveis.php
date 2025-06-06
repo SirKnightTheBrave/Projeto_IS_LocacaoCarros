@@ -28,4 +28,3 @@ class BensLocaveis extends Model
         return $this->hasMany('App\Models\Locacoes', 'bem_locavel_id');
     }
 }
-

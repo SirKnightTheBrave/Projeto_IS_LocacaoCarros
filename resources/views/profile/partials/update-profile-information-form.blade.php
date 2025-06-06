@@ -18,7 +18,7 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nome')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
@@ -46,6 +46,23 @@
                 </div>
             @endif
         </div>
+        <div>
+            <x-input-label for="telefone" :value="__('Telefone')" />
+            <x-text-input id="telefone" name="telefone" type="text" class="mt-1 block w-full" :value="old('telefone', $user->telefone)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
+        </div>
+        <div>
+            <x-input-label for="morada" :value="__('Morada')" />
+            <x-text-input id="morada" name="morada" type="text" class="mt-1 block w-full" :value="old('morada', $user->morada)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('morada')" />
+        </div>
+        <!-- Add NIF field as a read-only field -->
+        <div>
+            <x-input-label for="nif" :value="__('NIF')" />
+            <x-text-input id="nif" name="nif" type="text" class="mt-1 block w-full" :value="old('nif', $user->nif)" readonly />
+            <x-input-error class="mt-2" :messages="$errors->get('nif')" />
+        </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
