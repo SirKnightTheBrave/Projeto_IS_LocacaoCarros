@@ -2,28 +2,36 @@
 
 namespace App\Mail;
 
+use DateTime;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RentalConfirmMail extends Mailable
+class RentalConfirmMail extends Mailable implements ShouldQueue
 {
     //processamento assíncrono
     use Queueable, SerializesModels;
 
-    public string $client;
-    public string $local;
+    public $client;
+    public $modelo;
+    public $data_inicio;
+    public $data_fim;
+    public $preco_total;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $client, string $local)
+    public function __construct($client, $modelo, $data_inicio, $data_fim, $preco_total)
     {
         $this->client = $client;
-        $this->local = $local;
+        $this->modelo = $modelo;
+        $this->data_inicio = $data_inicio;
+        $this->data_fim = $data_fim;
+        $this->preco_total = $preco_total;
     }
 
     /**

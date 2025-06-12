@@ -6,7 +6,9 @@ use App\Models\Locacoes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservaController extends Controller
 {
@@ -27,11 +29,11 @@ class ReservaController extends Controller
     {
         $user = Auth::user();
         $reservas = Locacoes::with(['bemLocavel']) // Eager loading
-        ->where('user_id', $user->id)
-        ->orderByDesc('data_inicio')
-        ->get();
+            ->where('user_id', $user->id)
+            ->orderByDesc('data_inicio')
+            ->get();
 
-        return view('locacoes.locacoes', compact('reservas', ));
+        return view('locacoes.locacoes', compact('reservas',));
     }
     public function store(Request $request)
     {
@@ -84,10 +86,25 @@ class ReservaController extends Controller
             'preco_total' => $validated['preco_total'],
             'status' => 'reservado',
         ]);
-        session(['id' => $reserva->id]);
 
-        return redirect()->route('locacao.show', $reserva->id)
-            ->with('success', 'Reserva criada com sucesso!');
+        session(['id' => $reserva->id]);
+        try {
+            Mail::to($request->user()->email)
+                ->queue(new \App\Mail\RentalConfirmMail(
+                    $request->user()->name,
+                    $reserva->bemLocavel->modelo,
+                    $reserva->data_inicio,
+                    $reserva->data_fim,
+                    $reserva->preco_total
+                ));
+
+                 return redirect()->route('locacao.show', $reserva->id)
+                ->with(['success' => 'Reserva realizada com sucesso! Enviamos um e-mail de confirmação com a sua reserva.']);
+        } catch (\Exception $e) {
+            return redirect()->route('locacao.show', $reserva->id)
+                ->withErrors(['error' => 'Erro ao enviar o e-mail de confirmação.']);
+        }
+
     }
 
 
